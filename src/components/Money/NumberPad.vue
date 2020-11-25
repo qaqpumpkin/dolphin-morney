@@ -1,8 +1,8 @@
 <template>
     <div class="numberPad">
-        <div class="output">100</div>
-        <div class="buttons" clearfix>
-            <button>1</button>
+        <div class="output">{{ output }}</div>
+        <div class="buttons">
+            <button @click="output += 1">1</button>
             <button>2</button>
             <button>3</button>
             <button>删除</button>
@@ -20,9 +20,24 @@
     </div>
 </template>
 
-<script>
-export default {
-name: "NumberPad"
+<script lang="ts">
+import Vue from 'vue'
+import {Component} from "vue-property-decorator";
+@Component
+export default class NumberPad extends Vue {
+    output = '0';
+    inputContent(event: MouseEvent) {
+        const button = (event.target as HTMLButtonElement);
+        const input = button.textContent as string;
+        if (this.output === '0') {
+            if (input === '0') {
+                return;
+            }
+        } else if ('123456789'.indexOf(input) >= 0) {
+            this.output = input
+        }
+        this.output += button.textContent
+    }
 }
 </script>
 
@@ -36,6 +51,7 @@ name: "NumberPad"
         font-family: Consolas, monospace;
         padding: 9px 16px;
         text-align: right;
+        min-height: 72px;
     }
     .buttons {
         @extend %clearFix;
