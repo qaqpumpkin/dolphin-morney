@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import {Component} from "vue-property-decorator";
+import {Component, Watch} from "vue-property-decorator";
 @Component
     export default class Types extends Vue {
         type = '-'; // '-'表示支出，'+'表示收入
@@ -25,6 +25,10 @@ import {Component} from "vue-property-decorator";
             }
             this.type = type
         }
+    @Watch('type')
+    onTypeChanged(value: string) {
+        this.$emit('update:value', value)
+    }
 }
 // export default {
 //     name: "Types",
