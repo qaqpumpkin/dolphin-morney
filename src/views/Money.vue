@@ -1,7 +1,7 @@
 <template>
     <div>
       <Layout class-prefix="layout">
-          <NumberPad @update:value="onUpdateAmount"/>
+          <NumberPad :value.sync="record.amount"/>
           <Types :value.sync="record.type"/>
           <Notes @update:value="onUpdateNotes"/>
           <Tags :data-source.sync="tags" @update:value="onUpdateTags"/>
@@ -30,7 +30,7 @@
     export default class Money extends Vue{
         tags = ['衣' , '食' , '住' , '行' , '玩']
         record: Record = {
-            tags: [], notes: '', type: '-', amount: 0
+            tags: [], notes: '', type: '+', amount: 0
         }
         onUpdateTags(value: string[]) {
             this.record.tags = value
@@ -45,7 +45,6 @@
 </script>
 <style>
     .layout-content {
-        border: 1px solid red;
         display: flex;
         flex-direction: column-reverse;
     }
