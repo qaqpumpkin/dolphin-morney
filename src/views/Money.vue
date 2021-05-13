@@ -31,15 +31,15 @@
     })
     export default class Money extends Vue{
         tags = tagList
-        recordList: RecordItem[] = JSON.parse(window.localStorage.getItem('recordList' ) || '[]');
+        recordList: RecordItem[] = recordList
         record: RecordItem = {
-            tags: [], FormItem: '', type: '+', amount: 0
+            tags: [], notes: '', type: '+', amount: 0
         }
         onUpdateTags(value: string[]) {
             this.record.tags = value
         }
         onUpdateFormItem(value: string) {
-            this.record.FormItem = value
+            this.record.notes = value
         }
         saveRecord() {
             const record2: RecordItem = recordListModel.clone(this.record)
