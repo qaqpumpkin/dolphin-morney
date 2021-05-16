@@ -11,6 +11,24 @@ import tagListModel from "@/models/tagListModel";
 Vue.config.productionTip = false
 
 window.tagList = tagListModel.fetch()
+window.findTag = (id: string) => {
+    const tag = window.tagList.filter(t => t.id === id)[0];
+    return tag
+}
+window.createTag = (name: string) => {
+    const message = tagListModel.create(name);
+    if(message === 'duplicated') {
+      window.alert(('标签名重复了'))
+    } else if (message === 'success') {
+      window.alert('添加成功')
+    }
+}
+window.removeTag = (id: string) => {
+    return tagListModel.remove(id);
+}
+window.updateTag = (id: string, name: string) => {
+    return tagListModel.update(id, name)
+}
 
 Vue.component('Nav', Nav)
 Vue.component('Layout', Layout)

@@ -19,7 +19,6 @@
     import Tags from "@/components/Money/Tags.vue";
     import {Component, Watch} from 'vue-property-decorator'
     import recordListModel from '@/models/recordListModel';
-    import tagListModel from '@/models/tagListModel';
 
     window.localStorage.setItem('version', '0.0.1')
 
