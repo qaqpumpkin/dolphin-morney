@@ -7,9 +7,14 @@ import Nav from '@/components/Nav.vue';
 import Layout from '@/components/Layout.vue';
 import icon from "@/components/icon.vue";
 import tagListModel from "@/models/tagListModel";
+import recordListModel from "@/models/recordListModel";
 
 Vue.config.productionTip = false
 
+//record store
+window.recordList = recordListModel.fetch()
+window.createRecord = (record: RecordItem) => {recordListModel.create(record)}
+//tag store
 window.tagList = tagListModel.fetch()
 window.findTag = (id: string) => {
     const tag = window.tagList.filter(t => t.id === id)[0];
