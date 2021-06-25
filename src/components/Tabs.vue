@@ -45,10 +45,11 @@
     background: #ffd946;
     display: flex;
     text-align: center;
-    font-size: 24px;
+    font-size: 22px;
+    padding: 0 25vw;
     &-item {
         width: 50%;
-        height: 64px;
+        height: 48px;
         display: flex;
         justify-content: center;
         align-items: center;

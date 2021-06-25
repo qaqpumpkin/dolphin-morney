@@ -10,5 +10,37 @@ export const moneyIcon: {id: string; name: string}[] = [
     {
         id: 'second-hand',
         name: '二手'
+    },
+    {
+        id: 'accident',
+        name: '事故'
+    },
+    {
+        id: 'alimony',
+        name: '赡养'
+    },
+    {
+        id: 'house',
+        name: '房贷'
+    },
+    {
+        id: 'market',
+        name: '市场'
+    },
+    {
+        id: 'movie',
+        name: '电影'
+    },
+    {
+        id: 'phone',
+        name: '通讯'
+    },
+    {
+        id: 'shopping',
+        name: '购物'
+    },
+    {
+        id: 'utilities',
+        name: '水电费'
     }
 ]

@@ -1,24 +1,30 @@
 <template>
     <div class="tags">
-        <div class="new">
-            <button @click="create">
-                新增标签
-            </button>
-        </div>
-        <ul class="current">
-            <li
-                v-for="tag in tagList"
-                :key="tag.id"
-                :class="{selected: selectedTags.indexOf(tag) >= 0}"
-                @click="toggle(tag.name)"
-            >{{tag.name}}</li>
+<!--        <div class="new">-->
+<!--            <button @click="create">-->
+<!--                新增标签-->
+<!--            </button>-->
+<!--        </div>-->
+        <ul class="moneyIcon">
+            <li v-for="(icon, index) in moneyIcon" class="moneyIcon-item" :key="index">
+                <Icon class="icon" :name="icon.id"></Icon>
+            </li>
         </ul>
+<!--        <ul class="current">-->
+<!--            <li-->
+<!--                v-for="tag in tagList"-->
+<!--                :key="tag.id"-->
+<!--                :class="{selected: selectedTags.indexOf(tag) >= 0}"-->
+<!--                @click="toggle(tag.name)"-->
+<!--            >{{tag.name}}</li>-->
+<!--        </ul>-->
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
+import { moneyIcon } from '@/lib/config'
 @Component({
     computed: {
         tagList() {
@@ -28,6 +34,7 @@ import {Component} from 'vue-property-decorator';
 })
 export default class Tags extends Vue{
     selectedTags: string[] = []
+    moneyIcon: object[] = moneyIcon
     created() {
         this.$store.commit('fetchTags')
     }
@@ -52,10 +59,10 @@ export default class Tags extends Vue{
 <style lang="scss" scoped>
 .tags {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     flex-grow: 1;
     font-size: 14px;
-    padding: 16px;
+    //padding: 16px;
     > .current {
         display: flex;
         flex-wrap: wrap;
@@ -83,6 +90,28 @@ export default class Tags extends Vue{
             color: #999;
             border-bottom: 1px solid;
             padding: 0 4px;
+        }
+    }
+    .icon{
+
+    }
+    .moneyIcon{
+        &-item{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            float: left;
+            margin: 16px;
+            background: #FFF;
+            $h: 64px;
+            height: $h;
+            width: $h;
+            line-height: $h;
+            border-radius: $h;
+            .icon{
+                left: 50%;
+                font-size: 48px;
+            }
         }
     }
 }
