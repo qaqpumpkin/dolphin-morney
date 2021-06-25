@@ -1,4 +1,4 @@
-export const moneyIcon: {id: string; name: string}[] = [
+export const moneyIcon: Tag[] = [
     {
         id: 'gift',
         name: '礼物'
@@ -22,10 +22,6 @@ export const moneyIcon: {id: string; name: string}[] = [
     {
         id: 'house',
         name: '房贷'
-    },
-    {
-        id: 'market',
-        name: '市场'
     },
     {
         id: 'movie',

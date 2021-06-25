@@ -1,13 +1,15 @@
 <template>
-    <div>
+    <div style="height: 100vh;">
       <Layout class-prefix="layout">
-          <NumberPad :value.sync="record.amount" @submit="saveRecord"/>
+          <NumberPad class="fixed" :value.sync="record.amount" @submit="saveRecord"/>
 <!--          <Types :value.sync="record.type"/>-->
-          <FormItem field-name="备注"
-                 placeholder="在这里输入备注"
-                 @update:value="onUpdateFormItem"/>
+          <FormItem
+              class="fixed"
+              field-name="备注"
+              placeholder="在这里输入备注"
+              @update:value="onUpdateFormItem"/>
           <Tags @update:value="onUpdateTags"/>
-          <Tabs :data-source="recordTypesList" :value.sync="record.type"></Tabs>
+          <Tabs class="fixed" :data-source="recordTypesList" :value.sync="record.type"></Tabs>
       </Layout>
     </div>
 </template>
@@ -52,5 +54,8 @@
     .layout-content {
         display: flex;
         flex-direction: column-reverse;
+    }
+    .fixed{
+        flex: 0 0 auto;
     }
 </style>

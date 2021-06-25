@@ -6,8 +6,14 @@
 <!--            </button>-->
 <!--        </div>-->
         <ul class="moneyIcon">
-            <li v-for="(icon, index) in moneyIcon" class="moneyIcon-item" :key="index">
-                <Icon class="icon" :name="icon.id"></Icon>
+            <li v-for="(icon, index) in moneyIcon"
+                class="moneyIcon-content"
+                :key="index">
+                <div class="moneyIcon-item" :class="{selected: selectedTags.indexOf(icon.name) >= 0}"
+                     @click="toggle(icon.name)">
+                    <Icon class="icon" :name="icon.id"></Icon>
+                </div>
+                <span>{{icon.name}}</span>
             </li>
         </ul>
 <!--        <ul class="current">-->
@@ -34,8 +40,9 @@ import { moneyIcon } from '@/lib/config'
 })
 export default class Tags extends Vue{
     selectedTags: string[] = []
-    moneyIcon: object[] = moneyIcon
+    moneyIcon: Tag[] = moneyIcon
     created() {
+        this.$store.commit('initTags')
         this.$store.commit('fetchTags')
     }
     toggle(tag: string) {
@@ -60,8 +67,9 @@ export default class Tags extends Vue{
 .tags {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
     font-size: 14px;
+    flex: 1;
+    overflow-y: auto;
     //padding: 16px;
     > .current {
         display: flex;
@@ -96,14 +104,24 @@ export default class Tags extends Vue{
 
     }
     .moneyIcon{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        &-content{
+            display: flex;
+            //flex-grow: 1;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 16px;
+        }
         &-item{
             display: flex;
             justify-content: center;
             align-items: center;
             float: left;
-            margin: 16px;
             background: #FFF;
-            $h: 64px;
+            $h: 56px;
             height: $h;
             width: $h;
             line-height: $h;
@@ -111,6 +129,10 @@ export default class Tags extends Vue{
             .icon{
                 left: 50%;
                 font-size: 48px;
+            }
+            &.selected {
+                background: #ffd946;
+                color: white;
             }
         }
     }

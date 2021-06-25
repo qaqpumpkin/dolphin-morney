@@ -44,11 +44,11 @@
 .tabs {
     background: #ffd946;
     display: flex;
+    justify-content: center;
     text-align: center;
     font-size: 22px;
-    padding: 0 25vw;
     &-item {
-        width: 50%;
+        width: 94px;
         height: 48px;
         display: flex;
         justify-content: center;
