@@ -38,6 +38,7 @@ export default class Tags extends Vue{
         } else {
             this.selectedTags.push(tag)
         }
+        console.log('this.selectedTags', this.selectedTags)
         this.$emit('update:value', this.selectedTags)
     }
     create() {
@@ -69,7 +70,8 @@ export default class Tags extends Vue{
             margin-right: 12px;
             margin-top: 4px;
             &.selected {
-                background: darken($bg, 50%);
+                background: red;
+                color: white;
             }
         }
     }

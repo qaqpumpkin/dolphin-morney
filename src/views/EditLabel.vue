@@ -5,6 +5,7 @@
       <span class="title">编辑标签</span>
       <span class="rightIcon"></span>
     </div>
+
     <div class="form-wrapper">
       <FormItem :value="currentTag.name"
                 @update:value="update"
@@ -26,6 +27,7 @@ import Button from '@/components/Button.vue';
   components: {Button, FormItem},
 })
 export default class EditLabel extends Vue {
+
   get currentTag() {
       return this.$store.state.currentTag
   }

@@ -2,7 +2,7 @@
   <Layout>
     <Tabs class-prefix="interval" :data-source="intervalList" :value.sync="interval"></Tabs>
     <ol>
-      <li v-for="(group, index) in result" :key="index">
+      <li v-for="group in result" :key="group.title">
         <h3>{{ group.title }}</h3>
         <ol>
           <li v-for="item in group.items" :key="item.id" class="record">
@@ -23,6 +23,7 @@ import {Component} from 'vue-property-decorator'
 import Tabs from "@/components/Tabs.vue";
 import intervalList from '@/constants/interval'
 import recordTypesList from "@/constants/recordTypesList";
+import dayjs from 'dayjs'
 
 @Component({
   components: {Tabs},

@@ -7,7 +7,7 @@
           <FormItem field-name="备注"
                  placeholder="在这里输入备注"
                  @update:value="onUpdateFormItem"/>
-          <Tags/>
+          <Tags @update:value="onUpdateTags"/>
       </Layout>
     </div>
 </template>
@@ -42,6 +42,9 @@
         }
         saveRecord() {
             this.$store.commit('createRecord', this.record)
+        }
+        onUpdateTags(value: Tag[]) {
+            this.record.tags = value
         }
     }
 </script>
