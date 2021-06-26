@@ -38,5 +38,13 @@ export const moneyIcon: Tag[] = [
     {
         id: 'utilities',
         name: '水电费'
+    },
+    {
+        id: 'takeout',
+        name: '外卖'
+    },
+    {
+        id: 'medical',
+        name: '医疗'
     }
 ]

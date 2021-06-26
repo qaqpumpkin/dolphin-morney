@@ -1,12 +1,7 @@
 <template>
     <div class="tags">
-<!--        <div class="new">-->
-<!--            <button @click="create">-->
-<!--                新增标签-->
-<!--            </button>-->
-<!--        </div>-->
         <ul class="moneyIcon">
-            <li v-for="(icon, index) in moneyIcon"
+            <li v-for="(icon, index) in tagList"
                 class="moneyIcon-content"
                 :key="index">
                 <div class="moneyIcon-item" :class="{selected: selectedTags.indexOf(icon.name) >= 0}"
@@ -16,21 +11,12 @@
                 <span>{{icon.name}}</span>
             </li>
         </ul>
-<!--        <ul class="current">-->
-<!--            <li-->
-<!--                v-for="tag in tagList"-->
-<!--                :key="tag.id"-->
-<!--                :class="{selected: selectedTags.indexOf(tag) >= 0}"-->
-<!--                @click="toggle(tag.name)"-->
-<!--            >{{tag.name}}</li>-->
-<!--        </ul>-->
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
-import { moneyIcon } from '@/lib/config'
 @Component({
     computed: {
         tagList() {
@@ -40,7 +26,6 @@ import { moneyIcon } from '@/lib/config'
 })
 export default class Tags extends Vue{
     selectedTags: string[] = []
-    moneyIcon: Tag[] = moneyIcon
     created() {
         this.$store.commit('initTags')
         this.$store.commit('fetchTags')

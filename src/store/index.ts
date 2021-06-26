@@ -12,7 +12,8 @@ const store = new Vuex.Store({
     state: {
         recordList: [] as RecordItem[],
         tagList: [] as Tag[],
-        currentTag: undefined
+        currentTag: undefined,
+        initState: false
     } as RootState,
     mutations: {
         setCurrentTag(state, id) {
@@ -31,9 +32,13 @@ const store = new Vuex.Store({
             window.localStorage.setItem('recordList', JSON.stringify(state.recordList))
         },
         initTags(state) {
-            state.tagList = moneyIcon
-            store.commit('saveTags')
-            console.log('state.tagList', state.tagList)
+            //初始化状态
+            const initState = state.initState
+            if(!initState) {
+                state.tagList = moneyIcon
+                store.commit('saveTags')
+                state.initState = true
+            }
         },
         fetchTags(state) {
             state.tagList = JSON.parse(window.localStorage.getItem('tagList') || '[]');
