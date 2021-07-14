@@ -3,11 +3,21 @@
         <Layout class-prefix="layout">
             <NumberPad class="fixed" :value.sync="record.amount" @submit="saveRecord"/>
             <!--          <Types :value.sync="record.type"/>-->
-            <FormItem
-                class="fixed"
-                field-name="备注"
-                placeholder="在这里输入备注"
-                @update:value="onUpdateFormItem"/>
+            <div class="createdAt">
+                <FormItem
+                    class="fixed"
+                    type="date"
+                    field-name="日期"
+                    placeholder="在这里输入日期"
+                    :value.sync="record.createdAt"/>
+            </div>
+            <div class="notes">
+                <FormItem
+                    class="fixed"
+                    field-name="备注"
+                    placeholder="在这里输入备注"
+                    :value.sync="record.notes"/>
+            </div>
             <Tags @update:value="onUpdateTags"/>
             <Tabs class="fixed" :data-source="recordTypesList" :value.sync="record.type"></Tabs>
         </Layout>
@@ -35,15 +45,11 @@ export default class Money extends Vue {
 
     recordTypesList = recordTypesList
     record: RecordItem = {
-        tags: [], notes: '', type: '+', amount: 0
+        tags: [], notes: '', type: '+', amount: 0, createdAt: new Date().toISOString()
     }
 
     created() {
         this.$store.commit('fetchRecords')
-    }
-
-    onUpdateFormItem(value: string) {
-        this.record.notes = value
     }
 
     saveRecord() {
