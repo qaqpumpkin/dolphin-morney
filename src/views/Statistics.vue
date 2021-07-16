@@ -61,13 +61,11 @@ export default class Statistics extends Vue {
     get chartOptions() {
         const today = new Date()
         const array = []
-        console.log('this.recordList', this.recordList)
         for (let i = 0; i <= 29; i++) {
             const date = dayjs(today).subtract(i, 'day').format('YYYY-MM-DD')
-            array.push({date: date,  value: _.find(this.recordList, {
-                    createdAt: date})?.amount})
+            const found = _.find(this.groupList, {title: date})
+            array.push({date: date,  value: found ? found.total : 0})
         }
-        console.log('array', array)
         array.sort((a, b) => {
             if (a.date > b.date) {
                 return 1
@@ -144,7 +142,7 @@ export default class Statistics extends Vue {
         div.scrollLeft = div.scrollWidth
         this.$store.commit('fetchRecords')
     }
-    type = '-'
+    type = '+'
     interval = 'day'
     intervalList = intervalList
     recordTypesList = recordTypesList
